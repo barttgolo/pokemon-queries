@@ -32,8 +32,8 @@ export const Pokemon = () => {
         Load more
       </button>
 
-      <div className="fixed bottom-4 bg-blue-500 text-white left-4 p-4 rounded-full">
-        {data.length}
+      <div className="fixed bottom-4 bg-blue-500 left-4 p-4 h-16 w-16 text-center rounded-full flex justify-center items-center">
+        <span className="text-white font-semibold">{data.length}</span>
       </div>
     </div>
   );
