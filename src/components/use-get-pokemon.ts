@@ -31,7 +31,7 @@ export const useGetPokemon = () => {
     combine: (results) => {
       const arePokemonPending = results.some((result) => result.isPending);
 
-      if (results.length === 20 && arePokemonPending) {
+      if (results.length === BASE_LIMIT && arePokemonPending) {
         return {
           data: [],
           arePokemonPending,
@@ -41,7 +41,7 @@ export const useGetPokemon = () => {
       return {
         data: results
           .map((result) => result.data)
-          .slice(0, arePokemonPending ? limit - 20 : undefined),
+          .slice(0, arePokemonPending ? limit - BASE_LIMIT : undefined),
         arePokemonPending,
       };
     },

@@ -1,6 +1,7 @@
 import { PokemonCard } from "@/components/pokemon-card";
 import { Skeleton } from "@/components/skeleton";
 import { useGetPokemon } from "@/components/use-get-pokemon";
+import { BASE_LIMIT } from "@/utils/consts";
 import { ElementRef, useEffect, useRef } from "react";
 
 export const Pokemon = () => {
@@ -12,7 +13,7 @@ export const Pokemon = () => {
       return;
     }
 
-    setLimit((prev) => prev + 20);
+    setLimit((prev) => prev + BASE_LIMIT);
   };
 
   useEffect(() => {
