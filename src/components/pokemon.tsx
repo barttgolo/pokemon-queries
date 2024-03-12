@@ -1,4 +1,5 @@
 import { PokemonCard } from "@/components/pokemon-card";
+import { Skeleton } from "@/components/skeleton";
 import { useGetPokemon } from "@/components/use-get-pokemon";
 
 export const Pokemon = () => {
@@ -22,6 +23,7 @@ export const Pokemon = () => {
         {data.map((pokemon: any) => (
           <PokemonCard key={pokemon.id} pokemon={pokemon} />
         ))}
+        {isPending ? <Skeleton /> : null}
       </div>
 
       <button

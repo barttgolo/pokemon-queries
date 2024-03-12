@@ -11,22 +11,29 @@ export const PokemonCard = ({ pokemon }: { pokemon: any }) => {
 
   return (
     <div
-      className="p-4 bg-slate-200 rounded-lg flex flex-col  justify-start cursor-pointer"
+      className="p-4 bg-slate-200 rounded-lg flex flex-col justify-start cursor-pointer"
       onClick={() => setShowMoreInfo((prev) => !prev)}
     >
       <img
         src={pokemon.sprites.front_default}
         className="object-contain h-48"
       />
-      <Attribute name="Name" value={capitalize(pokemon.name)} />
-      <Attribute name="Types" value={pokemonTypes} />
 
-      {showMoreInfo ? (
-        <>
+      <div className="flex justify-between">
+        <div>
+          <Attribute name="Name" value={capitalize(pokemon.name)} />
+          <Attribute name="Types" value={pokemonTypes} />
+        </div>
+
+        <div
+          className={`transition-opacity duration-150 ${
+            showMoreInfo ? "opacity-100" : "opacity-0"
+          }`}
+        >
           <Attribute name="Weight" value={pokemon.weight} />
           <Attribute name="Height" value={pokemon.height} />
-        </>
-      ) : null}
+        </div>
+      </div>
     </div>
   );
 };
