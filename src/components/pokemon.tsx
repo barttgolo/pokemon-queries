@@ -1,9 +1,11 @@
 import { PokemonCard } from "@/components/pokemon-card";
 import { Skeleton } from "@/components/skeleton";
 import { useGetPokemon } from "@/components/use-get-pokemon";
+import { ElementRef, useEffect, useRef } from "react";
 
 export const Pokemon = () => {
   const { data, isPending, setLimit } = useGetPokemon();
+  const buttonRef = useRef<ElementRef<"button">>(null);
 
   const handleClickButton = () => {
     if (isPending) {
@@ -12,6 +14,14 @@ export const Pokemon = () => {
 
     setLimit((prev) => prev + 20);
   };
+
+  useEffect(() => {
+    if (isPending || !buttonRef.current) {
+      return;
+    }
+
+    buttonRef.current.scrollIntoView({ behavior: "smooth" });
+  }, [isPending]);
 
   if (!data.length) {
     return null;
@@ -27,6 +37,7 @@ export const Pokemon = () => {
       </div>
 
       <button
+        ref={buttonRef}
         className="p-4 mt-10 text-lg bg-cyan-500 rounded-md text-white disabled:bg-cyan-100  disabled:text-cyan-400 hover:bg-cyan-600 active:hover:bg-cyan-700 transition-colors duration-150"
         disabled={isPending}
         onClick={handleClickButton}
