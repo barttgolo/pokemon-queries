@@ -11,7 +11,7 @@ export const PokemonCard = ({ pokemon }: { pokemon: any }) => {
 
   return (
     <div
-      className="p-4 bg-slate-200 rounded-lg flex flex-col justify-start cursor-pointer"
+      className="p-4 bg-slate-200 rounded-lg flex flex-col justify-start cursor-pointer shadow-md"
       onClick={() => setShowMoreInfo((prev) => !prev)}
     >
       <img

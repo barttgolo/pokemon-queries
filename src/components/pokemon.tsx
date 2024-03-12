@@ -18,7 +18,7 @@ export const Pokemon = () => {
   }
 
   return (
-    <div className="w-5/6 bg-white rounded-lg p-4 flex flex-col my-10">
+    <div className="w-5/6 bg-white rounded-lg p-4 flex flex-col my-10 shadow-lg">
       <div className="grow grid grid-cols-5 gap-4">
         {data.map((pokemon: any) => (
           <PokemonCard key={pokemon.id} pokemon={pokemon} />
