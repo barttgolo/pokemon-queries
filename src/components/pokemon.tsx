@@ -17,7 +17,7 @@ export const Pokemon = () => {
   }
 
   return (
-    <div className="w-4/6 bg-white rounded-lg p-4 flex flex-col my-10">
+    <div className="w-5/6 bg-white rounded-lg p-4 flex flex-col my-10">
       <div className="grow grid grid-cols-5 gap-4">
         {data.map((pokemon: any) => (
           <PokemonCard key={pokemon.id} pokemon={pokemon} />
@@ -32,8 +32,8 @@ export const Pokemon = () => {
         Load more
       </button>
 
-      <div className="fixed bottom-0 left-0">
-        Current number of Pokémon: {data.length}
+      <div className="fixed bottom-4 bg-blue-500 text-white left-4 p-4 rounded-full">
+        {data.length}
       </div>
     </div>
   );
