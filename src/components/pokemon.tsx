@@ -17,7 +17,12 @@ export const Pokemon = () => {
   };
 
   useEffect(() => {
-    if (isPending || !buttonRef.current || data.length === 20) {
+    if (
+      isPending ||
+      !buttonRef.current ||
+      data.length === 20 ||
+      window.innerWidth < 768
+    ) {
       return;
     }
 
