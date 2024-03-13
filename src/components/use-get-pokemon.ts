@@ -12,7 +12,7 @@ export const useGetPokemon = () => {
   const [limit, setLimit] = useState(BASE_LIMIT);
 
   const { isPending: isPokemonIdsPending, data: pokemonIdsData } = useQuery({
-    queryKey: ["pokemonUrls", limit],
+    queryKey: ["pokemonIds", limit],
     queryFn: () => fetchPokemonUrls(limit),
     placeholderData: keepPreviousData,
     select: (data) =>
