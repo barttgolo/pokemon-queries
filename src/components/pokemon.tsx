@@ -1,6 +1,6 @@
 import { PokemonCard } from "@/components/pokemon-card";
 import { Skeleton } from "@/components/skeleton";
-import { useGetPokemon } from "@/components/use-get-pokemon";
+import { useGetPokemon } from "@/hooks/use-get-pokemon";
 import { BASE_LIMIT } from "@/utils/consts";
 import { ElementRef, useEffect, useRef } from "react";
 
@@ -36,7 +36,7 @@ export const Pokemon = () => {
   return (
     <div className="w-5/6 bg-white rounded-lg p-4 flex flex-col my-4 md:my-7 xl:my-10 shadow-lg">
       <div className="grow grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 gap-4">
-        {data.map((pokemon: any) => (
+        {data.map((pokemon) => (
           <PokemonCard key={pokemon.id} pokemon={pokemon} />
         ))}
         {isPending ? <Skeleton /> : null}

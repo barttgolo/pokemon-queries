@@ -1,6 +1,6 @@
 type Props = {
   name: string;
-  value: string;
+  value: string | number;
 };
 
 export const Attribute = ({ name, value }: Props) => {

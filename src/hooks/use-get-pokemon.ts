@@ -1,12 +1,7 @@
-import { BASE_API_URL, BASE_LIMIT } from "@/utils/consts";
+import { fetchPokemonUrls, fetchPokemon } from "@/utils/service";
+import { BASE_LIMIT } from "@/utils/consts";
 import { useQuery, keepPreviousData, useQueries } from "@tanstack/react-query";
 import { useState } from "react";
-
-const fetchPokemonUrls = (limit: number) =>
-  fetch(`${BASE_API_URL}?limit=${limit}&offset=0`).then((res) => res.json());
-
-const fetchPokemon = (id: string) =>
-  fetch(`${BASE_API_URL}/${id}`).then((res) => res.json());
 
 export const useGetPokemon = () => {
   const [limit, setLimit] = useState(BASE_LIMIT);
@@ -15,8 +10,7 @@ export const useGetPokemon = () => {
     queryKey: ["pokemonIds", limit],
     queryFn: () => fetchPokemonUrls(limit),
     placeholderData: keepPreviousData,
-    select: (data) =>
-      data.results.map((result: { url: string }) => result.url.split("/")[6]),
+    select: (data) => data.results.map((result) => result.url.split("/")[6]),
   });
 
   const { data, arePokemonPending } = useQueries({
@@ -41,7 +35,8 @@ export const useGetPokemon = () => {
       return {
         data: results
           .map((result) => result.data)
-          .slice(0, arePokemonPending ? limit - BASE_LIMIT : undefined),
+          .slice(0, arePokemonPending ? limit - BASE_LIMIT : undefined)
+          .filter(Boolean),
         arePokemonPending,
       };
     },

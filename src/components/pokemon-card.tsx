@@ -1,12 +1,19 @@
 import { Attribute } from "@/components/attribute";
 import { capitalize } from "@/utils/tools";
+import { Pokemon } from "@/utils/types";
 import { useState } from "react";
 
-export const PokemonCard = ({ pokemon }: { pokemon: any }) => {
+type Props = {
+  pokemon: Pokemon;
+};
+
+export const PokemonCard = ({ pokemon }: Props) => {
   const [showMoreInfo, setShowMoreInfo] = useState(false);
 
-  const pokemonTypes = pokemon.types
-    .map((type: any) => capitalize(type.type.name))
+  const { types, sprites, name, weight, height } = pokemon;
+
+  const pokemonTypes = types
+    .map(({ type }) => capitalize(type.name))
     .join(", ");
 
   return (
@@ -14,14 +21,11 @@ export const PokemonCard = ({ pokemon }: { pokemon: any }) => {
       className="p-4 bg-slate-200 rounded-lg flex flex-col justify-start cursor-pointer shadow-md"
       onClick={() => setShowMoreInfo((prev) => !prev)}
     >
-      <img
-        src={pokemon.sprites.front_default}
-        className="object-contain h-48"
-      />
+      <img src={sprites.front_default} className="object-contain h-48" />
 
       <div className="flex justify-between">
         <div>
-          <Attribute name="Name" value={capitalize(pokemon.name)} />
+          <Attribute name="Name" value={capitalize(name)} />
           <Attribute name="Types" value={pokemonTypes} />
         </div>
 
@@ -30,8 +34,8 @@ export const PokemonCard = ({ pokemon }: { pokemon: any }) => {
             showMoreInfo ? "opacity-100" : "opacity-0"
           }`}
         >
-          <Attribute name="Weight" value={pokemon.weight} />
-          <Attribute name="Height" value={pokemon.height} />
+          <Attribute name="Weight" value={weight} />
+          <Attribute name="Height" value={height} />
         </div>
       </div>
     </div>
